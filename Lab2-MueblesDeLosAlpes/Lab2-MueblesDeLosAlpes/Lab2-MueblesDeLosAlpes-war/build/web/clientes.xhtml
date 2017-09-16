@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Administración de Clientes" />
+    <ui:define name="body">
+        <h:form>
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+                <h:panelGrid width="100px" columns="4" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtNumeroId"
+                                     value="Numero de identificación"/>
+                    <h:inputText id="TxtNumeroId"
+                                   size="20"
+                                   maxlength="20"
+                                   label="numero"
+                                   value="#{clienteBean.cliente.numeroDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+
+                    <h:outputLabel for="TxtTipoId"
+                        value="Tipo de identificación"/>
+                    <h:inputText id="TxtTipo"
+                                   size="5"
+                                   maxlength="5"
+                                   label="tipo"
+                                   value="#{clienteBean.cliente.tipoDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:outputLabel for="TxtNombre"
+                        value="Nombre Completo"/>
+                    <h:inputText id="TxtNombre"
+                                   size="30"
+                                   maxlength="30"
+                                   label="nombre"
+                                   value="#{clienteBean.cliente.nombre}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:outputLabel for="TxtPais"
+                        value="Pais"/>
+                    <h:inputText id="TxtPais"
+                                   size="20"
+                                   maxlength="20"
+                                   label="pais"
+                                   value="#{clienteBean.cliente.pais}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:outputLabel for="TxtCiudad"
+                        value="Ciudad"/>
+                    <h:inputText id="TxtCiudad"
+                                   size="20"
+                                   maxlength="20"
+                                   label="ciudad"
+                                   value="#{clienteBean.cliente.ciudad}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:outputLabel for="TxtCelular"
+                        value="Celular"/>
+                    <h:inputText id="TxtCelular"
+                                   size="20"
+                                   maxlength="20"
+                                   label="celular"
+                                   value="#{clienteBean.cliente.celular}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="TxtDpto"
+                        value="Departamento"/>
+                    <h:inputText   id="TxtDepartamento"
+                                   size="20"
+                                   maxlength="20"
+                                   label="dpto"
+                                   value="#{clienteBean.cliente.departamento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:outputLabel for="TxtEmail"
+                        value="Email"/>
+                    <h:inputText   id="TxtEmail"
+                                   size="20"
+                                   maxlength="20"
+                                   label="email"
+                                   value="#{clienteBean.cliente.email}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                     <h:outputLabel for="Txtprofesion"
+                        value="profesion"/>
+                    <h:inputText   id="TxtCProfesion"
+                                   size="20"
+                                   maxlength="20"
+                                   label="profesion"
+                                   value="#{clienteBean.cliente.profesion}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                     <h:outputLabel for="Txttelefono"
+                        value="telefono"/>
+                    <h:inputText   id="TxtTelefono"
+                                   size="20"
+                                   maxlength="20"
+                                   label="telefono"
+                                   value="#{clienteBean.cliente.telefono}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                </h:panelGrid>
+              <h:commandButton value="Agregar Cliente" action="#{clienteBean.agregarCliente}" />
+            </h:panelGroup>   
+        </h:form>
+
+          <h:form>
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                  <h:commandButton value="Eliminar Cliente" action="#{clienteBean.eliminarCliente}" />
+                  
+                </h:panelGrid>
+             <h:panelGrid width="100px" columns="2" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                              <h:outputLabel for="TxtDocCli"
+                        value="Documento del Cliente"/>
+                    <h:inputText   id="TxtDocCli"
+                                   size="20"
+                                   maxlength="20"
+                                   label="doc"
+                                   value="#{clienteBean.numeroDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                     </h:inputText>
+                </h:panelGrid>
+            </h:form>
+        
+                <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{clienteBean.clientes}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Número Doc" sortBy="#{file.numeroDocumento}">
+                        <h:outputText value="#{file.numeroDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo Doc">
+                        <h:outputText value="#{file.tipoDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Pais">
+                        <h:outputText value="#{file.pais}" />
+                    </p:column>
+                    
+                    <p:column headerText="Celular">
+                        <h:outputText value="#{file.celular}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{file.email}" />
+                    </p:column>
+                    
+                    <p:column headerText="Dirección">
+                        <h:outputText value="#{file.direccion}" />
+                    </p:column>
+
+                    <p:column headerText="profesion">
+                        <h:outputText value="#{file.profesion}" />
+                    </p:column>
+
+                    
+                </p:dataTable>
+
+        </h:form>
+        
+    </ui:define>
+
+
+</ui:composition>

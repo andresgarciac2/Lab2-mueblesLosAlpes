@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Administración de Clientes" />
+    <ui:define name="body">
+        <h:form>
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+                <h:panelGrid width="100px" columns="4" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    
+                    <h:outputLabel for="TxtId"
+                                     value="Numero Documento"/>
+                    <h:inputText id="TxtId"
+                                   size="20"
+                                   maxlength="20"
+                                   label="Id"
+                                   value="#{clienteBean.cliente.numeroDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="TxtTipo" value="Tipo Documento"/>
+                    <h:inputText id="TxtTipo"
+                                   size="20"
+                                   maxlength="20"
+                                   label="Tipo"
+                                   value="#{clienteBean.cliente.tipoDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="TxtNombre" value="Nombre"/>
+                    <h:inputText id="TxtNombre"
+                                   size="20"
+                                   maxlength="20"
+                                   label="Nombre"
+                                   value="#{clienteBean.cliente.nombre}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="email" value="email"/>
+                    <h:inputText id="email"
+                                   size="20"
+                                   maxlength="20"
+                                   label="email"
+                                   value="#{clienteBean.cliente.email}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="pais" value="pais"/>
+                    <h:inputText id="pais"
+                                   size="20"
+                                   maxlength="20"
+                                   label="pais"
+                                   value="#{clienteBean.cliente.pais}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="ciudad" value="ciudad"/>
+                    <h:inputText id="ciudad"
+                                   size="20"
+                                   maxlength="20"
+                                   label="ciudad"
+                                   value="#{clienteBean.cliente.ciudad}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="direccion" value="direccion"/>
+                    <h:inputText id="direccion"
+                                   size="20"
+                                   maxlength="20"
+                                   label="direccion"
+                                   value="#{clienteBean.cliente.direccion}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="celular" value="celular"/>
+                    <h:inputText id="celular"
+                                   size="20"
+                                   maxlength="20"
+                                   label="celular"
+                                   value="#{clienteBean.cliente.celular}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                    <h:outputLabel for="departamento" value="departamento"/>
+                    <h:inputText id="departamento"
+                                   size="20"
+                                   maxlength="20"
+                                   label="departamento"
+                                   value="#{clienteBean.cliente.departamento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText> 
+                     
+                    <h:outputLabel for="profesion" value="profesion"/>
+                    <h:inputText id="profesion"
+                                   size="20"
+                                   maxlength="20"
+                                   label="profesion"
+                                   value="#{clienteBean.cliente.profesion}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:commandButton value="Agregar Cliente" action="#{clienteBean.agregarCliente}" />
+                </h:panelGrid>
+
+            </h:panelGroup>
+            
+        </h:form>
+        <h:form>
+            <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="id" value="Numero Documento"/>
+                    <h:inputText id="id"
+                                   size="20"
+                                   maxlength="20"
+                                   label="Id"
+                                   value="#{clienteBean.numeroDocumento}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:commandButton value="Eliminar Cliente" action="#{clienteBean.eliminarCliente}" />
+            </h:panelGrid>
+            
+        </h:form>
+     <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{clienteBean.clientes}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Numero Documento" sortBy="#{file.numeroDocumento}">
+                        <h:outputText value="#{file.numeroDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo Documento">
+                        <h:outputText value="#{file.tipoDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Email">
+                        <h:outputText value="#{file.email}" />
+                    </p:column>
+                    
+                    <p:column headerText="Pais">
+                        <h:outputText value="#{file.pais}" />
+                    </p:column>
+                    
+                    <p:column headerText="Ciudad">
+                        <h:outputText value="#{file.ciudad}" />
+                    </p:column>
+                    
+                    <p:column headerText="Departamento">
+                        <h:outputText value="#{file.departamento}" />
+                    </p:column>
+                                        
+                    <p:column headerText="Direccion">
+                        <h:outputText value="#{file.direccion}" />
+                    </p:column>
+                                                            
+                    <p:column headerText="Profesion">
+                        <h:outputText value="#{file.profesion}" />
+                    </p:column>
+                </p:dataTable>
+
+        </h:form>
+        
+    </ui:define>
+
+
+</ui:composition>
