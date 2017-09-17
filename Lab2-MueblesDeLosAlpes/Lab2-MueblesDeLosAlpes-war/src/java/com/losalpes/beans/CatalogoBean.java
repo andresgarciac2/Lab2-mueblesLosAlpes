@@ -6,10 +6,9 @@
  * Licenciado bajo el esquema Academic Free License version 3.0
  *
  * Ejercicio: Muebles de los Alpes
- * 
+ *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-
 package com.losalpes.beans;
 
 import com.losalpes.bos.Mueble;
@@ -18,118 +17,140 @@ import com.losalpes.servicios.IServicioCatalogo;
 import com.losalpes.servicios.ServicioCatalogoMock;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
-
 
 /**
  * Managed bean encargado del catálogo de muebles en el sistema
- * 
+ *
  */
 @ManagedBean
-public class CatalogoBean
-{
+@SessionScoped
+public class CatalogoBean {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
     /**
      * Representa un nuevo mueble a ingresar
      */
     private Mueble mueble;
 
     /**
-     * Relación con la interfaz que provee los servicios necesarios del catálogo.
+     * Relación con la interfaz que provee los servicios necesarios del
+     * catálogo.
      */
     private IServicioCatalogo catalogo;
 
-    //-----------------------------------------------------------
-    // Constructor
-    //-----------------------------------------------------------
+    /**
+     * Referencia del mueble a Eliminar
+     */
+    private String referencia;
 
     /**
+     *
+     * //----------------------------------------------------------- //
+     * Constructor //-----------------------------------------------------------
+     *
+     * /**
      * Constructor de la clase principal
      */
-    public CatalogoBean()
-    {
-        mueble=new Mueble();
-        catalogo=new ServicioCatalogoMock();
+    public CatalogoBean() {
+        mueble = new Mueble();
+        catalogo = new ServicioCatalogoMock();
     }
 
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
-
     /**
      * Devuelve el objeto mueble
+     *
      * @return mueble Objeto mueble
      */
-    public Mueble getMueble()
-    {
+    public Mueble getMueble() {
         return mueble;
     }
 
     /**
      * Modifica el objeto mueble
+     *
      * @param mueble Nuevo mueble
      */
-    public void setMueble(Mueble mueble)
-    {
+    public void setMueble(Mueble mueble) {
         this.mueble = mueble;
     }
 
     /**
      * Devuelve una lista con todos los muebles del sistema
+     *
      * @return muebles Muebles del sistema
      */
-    public List<Mueble> getMuebles()
-    {
-
+    public List<Mueble> getMuebles() {
         return catalogo.darMuebles();
     }
 
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
-
     /**
      * Agrega un nuevo mueble al sistema
      */
-    public void agregarMueble()
-    {
+    public void agregarMueble() {
         catalogo.agregarMueble(mueble);
-        mueble=new Mueble();
+        mueble = new Mueble();
     }
 
     /**
      * Elimina la información del mueble
      */
-    public void limpiar()
-    {
-        mueble=new Mueble();
+    public void limpiar() {
+        mueble = new Mueble();
     }
-    
+
     /**
      * Devuelve los tipos de muebles
+     *
      * @return sitems Tipos de muebles en el sistema
      */
-    public SelectItem[] getTiposMuebles()
-    {
-        TipoMueble[] tipos=  TipoMueble.values();
+    public SelectItem[] getTiposMuebles() {
+        TipoMueble[] tipos = TipoMueble.values();
         SelectItem[] sitems = new SelectItem[tipos.length];
-        
-        for (int i = 0; i < sitems.length; i++)
-        {
-             sitems[i] = new SelectItem(tipos[i]);
+
+        for (int i = 0; i < sitems.length; i++) {
+            sitems[i] = new SelectItem(tipos[i]);
         }
         return sitems;
     }
+
+    public void actualizarMueble() {
+        catalogo.actualizarMueble(mueble);
+        mueble = new Mueble();
+    }
+
+    /**
+     * Elimina un cliente adel sistema
+     */
+    public void eliminarMueble() {
+        catalogo.eliminarMueble(mueble.getReferencia());
+        mueble = new Mueble();
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
     /**
      * Redirije a html de admin de clientes
-     * @return 
+     *
+     * @return
      */
-    public String irAClientes(){
-       return "success";
+    public String irAClientes() {
+        return "success";
     }
 
 }
