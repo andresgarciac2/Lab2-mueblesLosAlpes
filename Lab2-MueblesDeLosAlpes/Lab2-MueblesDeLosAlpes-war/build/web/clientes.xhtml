@@ -129,8 +129,9 @@
                     </h:inputText>
                     
                 </h:panelGrid>
-                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                <h:panelGrid width="100px" columns="2" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
                     <h:commandButton value="Agregar Cliente" action="#{clienteBean.agregarCliente}" />
+                    <h:commandButton value="Actualizar Cliente" action="#{clienteBean.actualizarCliente}" />
                 </h:panelGrid>
 
             </h:panelGroup>
@@ -159,6 +160,7 @@
                 <p:dataTable
                     id="data"
                     value="#{clienteBean.clientes}"
+                    filteredValue="#{clienteBean.clientesFiltrados}"
                     var="file"
                     scrollable="false"
                     scrollHeight="100px"
@@ -168,7 +170,7 @@
                     rows="5">
 
                            
-                    <p:column headerText="Numero Documento" sortBy="#{file.numeroDocumento}">
+                    <p:column filterBy="#{file.numeroDocumento}" headerText="Numero Documento" sortBy="#{file.numeroDocumento}" filterMatchMode="contains">
                         <h:outputText value="#{file.numeroDocumento}" />
                     </p:column>
                     
@@ -176,11 +178,11 @@
                         <h:outputText value="#{file.tipoDocumento}" />
                     </p:column>
                     
-                    <p:column headerText="Nombre">
+                    <p:column filterBy="#{file.nombre}" headerText="Nombre" filterMatchMode="contains">
                         <h:outputText value="#{file.nombre}" />
                     </p:column>
                     
-                    <p:column headerText="Email">
+                    <p:column filterBy="#{file.email}" headerText="Email" filterMatchMode="contains">
                         <h:outputText value="#{file.email}" />
                     </p:column>
                     
