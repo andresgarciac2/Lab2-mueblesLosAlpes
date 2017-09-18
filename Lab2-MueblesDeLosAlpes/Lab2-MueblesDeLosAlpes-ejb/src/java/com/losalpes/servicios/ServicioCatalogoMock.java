@@ -11,7 +11,6 @@
  */
 package com.losalpes.servicios;
 
-import com.losalpes.bos.Cliente;
 import com.losalpes.bos.Mueble;
 import com.losalpes.bos.TipoMueble;
 import java.util.ArrayList;
