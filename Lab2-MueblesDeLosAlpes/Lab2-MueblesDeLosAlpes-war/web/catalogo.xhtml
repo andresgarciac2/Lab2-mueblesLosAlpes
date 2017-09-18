@@ -83,7 +83,7 @@
             <p:dataTable
                 id="data"
                 value="#{catalogoBean.muebles}"
-                var="file"
+                var="product"
                 scrollable="false"
                 scrollHeight="100px"
                 paginator="true"
@@ -91,25 +91,25 @@
                 resizableColumns="true"
                 rows="5">
 
-
-                <p:column headerText="Referencia" sortBy="#{file.referencia}">
-                    <h:outputText value="#{file.referencia}" />
+                <p:column filterBy="#{product.referencia}" filterMatchMode="contains" headerText="Referencia" sortBy="#{product.referencia}">
+                    <h:outputText value="#{product.referencia}" />
                 </p:column>
 
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{file.nombre}" />
+                <p:column filterBy="#{product.nombre}" filterMatchMode="contains" headerText="Nombre">
+                    <h:outputText value="#{product.nombre}" />
                 </p:column>
 
+                <p:column filterBy="#{product.tipo}" filterMatchMode="contains" headerText="Tipo">
+                    <h:outputText value="#{product.tipo}" />
+                </p:column>
+                
                 <p:column headerText="Descripción">
-                    <h:outputText value="#{file.descripcion}" />
+                    <h:outputText value="#{product.descripcion}" />
                 </p:column>
-
-                <p:column headerText="Tipo">
-                    <h:outputText value="#{file.tipo}" />
-                </p:column>
-                <p:column style="width:32px;text-align: center">
+                
+                <p:column headerText="Ver detalles" style="width:32px;text-align: center">
                     <p:commandButton update="detail"  icon="ui-icon-search" title="View">
-                        <f:setPropertyActionListener value="#{file}" target="#{catalogoBean.mueble}" />
+                        <f:setPropertyActionListener value="#{product}" target="#{catalogoBean.mueble}" />
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
