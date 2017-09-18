@@ -43,11 +43,6 @@ public class CatalogoBean {
     private IServicioCatalogo catalogo;
 
     /**
-     * Referencia del mueble a Eliminar
-     */
-    private String referencia;
-
-    /**
      *
      * //----------------------------------------------------------- //
      * Constructor //-----------------------------------------------------------
@@ -129,19 +124,11 @@ public class CatalogoBean {
     }
 
     /**
-     * Elimina un cliente adel sistema
+     * Elimina un mueble del sistema
      */
     public void eliminarMueble() {
         catalogo.eliminarMueble(mueble.getReferencia());
         mueble = new Mueble();
-    }
-
-    public String getReferencia() {
-        return referencia;
-    }
-
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
     }
 
     /**

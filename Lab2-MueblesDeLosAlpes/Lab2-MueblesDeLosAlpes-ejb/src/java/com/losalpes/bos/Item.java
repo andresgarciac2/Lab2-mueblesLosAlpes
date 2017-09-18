@@ -26,6 +26,21 @@ public class Item {
      */
     private int cantidad;
 
+    /**
+     * Tipo del mueble
+     */
+    private TipoMueble tipo;
+
+    /**
+     * Nombre del Mueble
+     */
+    private String NombreMueble;
+
+    /**
+     * Precio total
+     */
+    private int PrecioTotal;
+
     public Item() {
     }
 
@@ -88,4 +103,51 @@ public class Item {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    /**
+     * Retorna el tipo del mueble
+     *
+     * @return NombreMueble
+     */
+    public TipoMueble getTipo() {
+        return tipo;
+    }
+
+    /**
+     * Asigna el tipo
+     *
+     * @param tipo
+     */
+    public void setTipo(TipoMueble tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * retorna el nombre del mueble
+     *
+     * @return NombreMueble
+     */
+    public String getNombreMueble() {
+        return NombreMueble;
+    }
+
+    /**
+     * Asigna el nombre del mueble
+     *
+     * @param NombreMueble
+     */
+    public void setNombreMueble(String NombreMueble) {
+        this.NombreMueble = NombreMueble;
+    }
+
+    /**
+     * Retorna el precio total
+     *
+     * @return PrecioTotal
+     */
+    public int getPrecioTotal() {
+        this.PrecioTotal = this.cantidad * this.precio;
+        return this.PrecioTotal;
+    }
+
 }
