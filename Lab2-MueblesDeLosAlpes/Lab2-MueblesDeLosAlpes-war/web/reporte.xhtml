@@ -37,26 +37,86 @@
                     <h:outputText value="#{item.fechaFin}" />
                 </p:column>
 
-                <h:column>
-                    <h:dataTable value="#{item.itemsExterior}" var="obj">
-                        <p:column headerText="Fecha de Inicio">
-                            <h:outputText value="#{obj.referencia}" />
-                        </p:column>
-                    </h:dataTable>
-                </h:column>
-
                 <p:column headerText="Total">
                     <h:outputText value="#{item.total}">
                         <f:convertNumber currencySymbol="$" type="currency"/>
                     </h:outputText>
                 </p:column>
 
+                <p:column headerText="Ver detalles">
+                    <p:commandButton update="detail" icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{item}" target="#{ventasBean.venta}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <h1>Tipo de mueble Exterior</h1>
+        <h:form id="detail">
+            <p:dataTable
+                id="data1"
+                value="#{ventasBean.venta.itemsExterior}"
+                var="item"
+                scrollable="false"
+                scrollHeight="100px"                
+                resizableColumns="true"
+                rows="5">
+
+                <p:column headerText="Referencia">
+                    <h:outputText value="#{item.referencia}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{item.precio}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{item.cantidad}" />
+                </p:column>
+
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{item.precioTotal}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </p:column>
 
             </p:dataTable>
 
+         <h:h1>Tipo de mueble Interiror</h1>
+
+            <p:dataTable
+                id="data2"
+                value="#{ventasBean.venta.itemsInterior}"
+                var="item"
+                scrollable="false"
+                scrollHeight="100px"                
+                resizableColumns="true"
+                rows="5">
+
+                <p:column headerText="Referencia">
+                    <h:outputText value="#{item.referencia}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{item.precio}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{item.cantidad}" />
+                </p:column>
+
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{item.precioTotal}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+
         </h:form>
-
-
     </ui:define>
 
 

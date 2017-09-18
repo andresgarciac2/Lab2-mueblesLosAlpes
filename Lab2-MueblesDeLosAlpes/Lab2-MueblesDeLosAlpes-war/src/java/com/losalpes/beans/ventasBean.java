@@ -11,6 +11,7 @@
  */
 package com.losalpes.beans;
 
+import com.losalpes.bos.Item;
 import com.losalpes.bos.Venta;
 import com.losalpes.servicios.SevicioVenta;
 import java.util.List;
@@ -32,7 +33,9 @@ public class ventasBean {
      * Representa un item del sistema
      */
     private SevicioVenta sevicioVenta;
-    
+
+    private Venta venta;
+
     /**
      *
      * //----------------------------------------------------------- //
@@ -42,7 +45,8 @@ public class ventasBean {
      * Constructor de la clase principal
      */
     public ventasBean() {
-        sevicioVenta = new SevicioVenta();        
+        venta = new Venta();
+        sevicioVenta = new SevicioVenta();
     }
 
     /**
@@ -52,6 +56,23 @@ public class ventasBean {
      */
     public List<Venta> getVentas() {
         return this.sevicioVenta.getVentas();
+    }
+
+    public List<Item> getItemsExterior() {
+        return venta.getItemsExterior();
+    }
+    
+    public List<Item> getItemsInterior() {
+        return venta.getItemsInterior();
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        venta.GetItems();
+        this.venta = venta;
     }
 
 }
