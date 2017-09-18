@@ -29,9 +29,15 @@ public class Venta {
 
     private int total;
 
-    public Venta() {
+    public Venta(String ciudad, List<Item> items) {
+        this.ciudad = ciudad;
+        this.items = items;
         items = new ArrayList<>();
         this.fechaInicio = new Date();
+    }
+
+    public Venta() {
+
     }
 
     public String getCiudad() {
@@ -56,6 +62,14 @@ public class Venta {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public List<Item> getItemsExterior() {
+        return itemsExterior;
+    }
+
+    public List<Item> getItemsInterior() {
+        return itemsInterior;
     }
 
     public int getTotal() {
