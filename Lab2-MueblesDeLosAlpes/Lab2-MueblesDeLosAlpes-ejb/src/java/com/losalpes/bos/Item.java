@@ -14,7 +14,7 @@ public class Item {
     /**
      * Precio del item
      */
-    private String precio;
+    private int precio;
 
     /**
      * Referencia del item
@@ -29,8 +29,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(String referencia) {
+    public Item(String referencia, int cantidad, int precio) {
         this.referencia = referencia;
+        this.cantidad = cantidad;
+        this.precio = precio;
     }
 
     /**
@@ -38,7 +40,7 @@ public class Item {
      *
      * @return precio
      */
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
@@ -47,7 +49,7 @@ public class Item {
      *
      * @param precio
      */
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

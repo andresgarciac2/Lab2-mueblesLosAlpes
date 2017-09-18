@@ -20,7 +20,6 @@ import com.losalpes.servicios.ServicioItemsImpl;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 /**
  * Managed bean encargado del catálogo de items en el sistema
@@ -58,6 +57,7 @@ public class ItemBean {
      * Constructor de la clase principal
      */
     public ItemBean() {
+
         item = new Item();
         servicioCatalogo = new ServicioCatalogoMock();
         servicioItem = new ServicioItemsImpl();
@@ -65,7 +65,9 @@ public class ItemBean {
         List<Mueble> muebleList = servicioCatalogo.darMuebles();
 
         for (Mueble mueble : muebleList) {
-            servicioItem.agregarItem(new Item(mueble.getReferencia()));
+            int cantidad = (int) (Math.random() * 10);
+            int precio = (int) (Math.random() * 100000);
+            servicioItem.agregarItem(new Item(mueble.getReferencia(), cantidad, precio));
         }
 
     }

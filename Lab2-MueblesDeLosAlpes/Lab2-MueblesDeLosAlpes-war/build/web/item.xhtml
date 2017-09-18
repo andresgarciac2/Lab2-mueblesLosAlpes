@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <h:form id="detail">
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                    <h:outputLabel for="TxtReferencia"
+                                   value="Referencia"/>
+                    <h:inputText id="TxtReferencia"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{itemBean.item.referencia}"
+                                 required="true"
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="refMsg" for="TxtReferencia" />
+                </h:panelGrid>
+
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtCantidad"
+                                   value="Cantidad" />
+                    <h:inputText id="TxtCantidad"
+                                 maxlength="20"
+                                 size="20"
+                                 value="#{itemBean.item.cantidad}"
+                                 label="Catidad"
+                                 required="true">
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="caMsg" for="TxtCantidad" />
+                </h:panelGrid>
+
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtPrecio"
+                                   value="Precio" />
+                    <h:inputText id="TxtPrecio"
+                                 maxlength="20"
+                                 size="20"
+                                 value="#{itemBean.item.precio}"
+                                 label="Precio"
+                                 required="true">
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="prMsg" for="TxtPrecio" />
+                </h:panelGrid>
+
+                <h:commandButton value="Agregar" action="#{itemBean.agregarItem}" />
+                <h:commandButton value="Actualizar" action="#{itemBean.actualizarItem}" />
+                <h:commandButton value="Eliminar" action="#{itemBean.eliminarItem}" />
+                <h:commandButton value="Limpiar" action="#{itemBean.limpiar}" />
+            </h:panelGroup>
+
+        </h:form>
+
+        <h:form>
+            <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+            <p:dataTable
+                id="data"
+                value="#{itemBean.items}"
+                var="item"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5">
+
+                <p:column filterBy="#{item.referencia}" filterMatchMode="contains" headerText="Referencia" sortBy="#{item.referencia}">
+                    <h:outputText value="#{item.referencia}" />
+                </p:column>                
+
+                <p:column headerText="precio">
+                    <h:outputText value="#{item.precio}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="cantidad">
+                    <h:outputText value="#{item.cantidad}" />
+                </p:column>
+
+                <p:column headerText="Ver detalles">
+                    <p:commandButton update="detail"  icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{item}" target="#{itemBean.item}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+
+
+    </ui:define>
+
+
+</ui:composition>

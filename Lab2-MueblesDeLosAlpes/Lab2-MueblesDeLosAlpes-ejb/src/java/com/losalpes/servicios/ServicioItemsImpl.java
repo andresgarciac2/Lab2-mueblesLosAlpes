@@ -18,7 +18,12 @@ public class ServicioItemsImpl implements IServicioItem {
     /**
      * Arreglo con items del sistema
      */
-    private ArrayList<Item> items;
+    private List<Item> items;
+    
+
+    public ServicioItemsImpl() {
+        items = new ArrayList<>();
+    }
 
     @Override
     public void agregarItem(Item item) {
