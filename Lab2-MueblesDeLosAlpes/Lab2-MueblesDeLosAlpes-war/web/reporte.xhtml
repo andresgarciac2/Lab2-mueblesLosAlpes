@@ -51,7 +51,7 @@
 
             </p:dataTable>
         </h:form>
-        <h1>Tipo de mueble Exterior</h1>
+        <h:outputText value="Tipo de mueble Exterior"/>
         <h:form id="detail">
             <p:dataTable
                 id="data1"
@@ -83,9 +83,7 @@
                 </p:column>
 
             </p:dataTable>
-
-         <h:h1>Tipo de mueble Interiror</h1>
-
+            <h:outputText value="Tipo de mueble Interior"/>
             <p:dataTable
                 id="data2"
                 value="#{ventasBean.venta.itemsInterior}"
